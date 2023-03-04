@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Telebeler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+    <script>
+
+    </script>
+
+
+    <link rel="stylesheet" href="css/students.css">
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+</head>
+
+<body>
+    <div style="width: 30%;margin: auto;">
+        <h3 id="header-text"></h3>
+        <form onsubmit="onSaveStudent(event)" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="student-name">Ad</label>
+                <input id="student-name" class="form-control">
+                <div id="name-error" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="student-surname">Soyad</label>
+                <input id="student-surname" class="form-control">
+                <div id="surname-error" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="student-photo">Profil şəkli</label>
+                <input id="student-photo" class="form-control" type="file">
+
+            </div>
+            <input type="submit" value="Yadda saxla" class="btn btn-success">
+
+        </form>
+
+    </div>
+    <hr>
+    <div class="container">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal"
+            onclick="onShowImage()">Şəkli göstər</button>
+
+        <button type="button" class="btn btn-danger" onclick="onDeleteStudent()">Sil</button>
+        <button type="button" class="btn btn-warning" onclick="onEditStudent()">Redaktə</button>
+        <button type="button" class="btn btn-success" onclick="onNoteStudent()" data-toggle="modal"
+            data-target="#noteModal" id="new-note-button">Qeyd yaz</button>
+        <button type="button" class="btn btn-secondary" onclick="onShowStudentNotes()" data-toggle="modal"
+            data-target="#notesListModal">Qeydlər</button>
+
+        <div id="myStudents" style="height: 300px; width:100%;" class="ag-theme-alpine"></div>
+    </div>
+
+    <div class="modal fade" id="noteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Yeni qeyd</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="onSaveStudentNote(event)">
+                        <div class="form-group">
+                            <label for="student-note">Qeyd</label>
+                            <input id="student-note" class="form-control">
+
+                        </div>
+
+                        <input type="submit" value="Yadda saxla" class="btn btn-success">
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="notesListModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tələbəyə yazılmış qeydlər</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Qeyd</th>
+                            </tr>
+                        </thead>
+                        <tbody id="notes-tbody">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="imageModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tələbənin şəkli</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <img src="" style="width: 100%;" id="student-image">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="js/students.js"></script>
+</body>
+
+</html>
